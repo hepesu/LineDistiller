@@ -38,7 +38,7 @@ The data should be organized into directories. The directory tree is:
 * Due to small dataset, the performance for general illustration could be worse. The model should be trained with argumented data contains different brightness and line width.
 * Parameter **EPOCHS** and **BATCH_SIZE** in `train.py` have been optimized.
 * Memory cost for HD image may be heavy.
-* The input will be preprocessed and the output is postprocessed for better result.
+* The input is preprocessed and the output is postprocessed for better result.
 
 ## Further Works
 * Train on large and various dataset.
