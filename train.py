@@ -221,4 +221,4 @@ history = model.fit_generator(
     callbacks=[checkpointer]
 )
 
-model.save_weights('model_final.h5')
+model.save('model_final.h5')
