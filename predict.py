@@ -15,7 +15,7 @@ for root, dirs, files in os.walk("data/predict", topdown=False):
         im = cv2.imread(os.path.join(root, name))
         im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 
-        # perform brightness correction in titles
+        # perform brightness correction in tiles
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(16, 16))
         im_gray = clahe.apply(im_gray)
 
@@ -25,5 +25,5 @@ for root, dirs, files in os.walk("data/predict", topdown=False):
 
         result = model.predict(im_predict, batch_size=1)
 
-        im_res = np.reshape(result, (im_predict.shape[1], im_predict.shape[2]))
+        im_res = np.reshape(result, (result.shape[1], result.shape[2]))
         cv2.imwrite(os.path.join('data/result', name), (im_res - np.mean(im_res) + 1.) * 255)
