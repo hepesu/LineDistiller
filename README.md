@@ -34,18 +34,21 @@ The data should be organized into directories. The directory tree is:
 **model_180102.h5**: Model trained using MSE loss with private dataset(will be public soon) for 25 epochs, loss ~0.001.
 
 ## Notes
-* **The model only works with illustrations which have lines**. It will not perform edge detection, it just extracts line from the original image. So it can ignore edges between different color fills and shadings (often cause gradient changes).
+* **The model only works with illustrations which have lines**. It will not perform edge detection, it just extracts lines from the original image. So it can ignore edges between different color fills and shadings (often cause gradient changes).
 * Due to small dataset, the performance for general illustration could be worse. The model should be trained with argumented data contains different brightness and line width.
+* The model can also extract text in dark color from image with complex background, see example in zhihu link.
 * Parameter **EPOCHS** and **BATCH_SIZE** in `train.py` have been optimized.
-* Memory cost for HD image may be heavy.
+* Using **tanh** as activation of last layer results better performance but may cause some artifacts.
+* Prefered sizes of image are HD (1920x1080) and SD (1280x720). Memory cost for HD image may be heavy.
 * The input is preprocessed and the output is postprocessed for better result.
 
-## Further Works
+## Further Work
 * Train on large and various dataset.
 * Classify lines and output them with classes such as boundray line, shading line.
 * Smaller structure and model size for running in browser.
 
 ## Examples
 [Weibo](http://photo.weibo.com/1252089801/talbum/detail/photo_id/4191853205742070/album_id/3557730510830920)
+[Zhihu](https://zhuanlan.zhihu.com/p/32597735)
 
 From **Project HAT** by Hepesu With :heart:
