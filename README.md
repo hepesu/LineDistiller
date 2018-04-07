@@ -6,9 +6,9 @@
 A data-driven **line extractor** for 2D anime, manga and illustration using Keras.
 
 ## Info
+* [Online demo ver. alpha](https://hepesu.github.io/LineDistiller-browser/)
 * Looking for nico-opendata to make public dataset, if you have nico-opendata please open issue.
 * New LineDistiller is on the schedule, it should work for illustration without line-drawings.
-* Online demo will be public soon, run Linedistiller in your browser without any effort.
 
 ## Overview
 Extraction of high quality lines from 2D illustration is very crucial for further deep learning work and its application such as colorization, sketch simplication and animation. This work was started for solving this basic problem and we received inspiration from [Deep Extraction of Manga Structural Lines](http://exhibition.cintec.cuhk.edu.hk/exhibition/project-item/manga-line-extraction/) [1] and [sketchKeras](https://github.com/lllyasviel/sketchKeras) [2]. Our approach build upon network in [1]. The residual block in [1] was changed to bottleneck residual block for better performance and less model size. We also tried original network in [1] and U-net like encoder-decoder network with highpass input like [2]. Among these models, the first model are better in both model size and result.
@@ -33,10 +33,11 @@ The data should be organized into directories. The directory tree is:
 
 2. Download the model from release and put it in the same folder with code, then rename to `model.h5`.
 
-3. Run `train.py` for train and `predict.py` for preidction.
+3. Run `train.py` for train and `predict.py` for prediction.
 
 ## Models
-**model_180102.h5**: Model trained using MSE loss with private dataset(will be public soon) for 25 epochs, loss ~0.001.
+**model_180102.h5**: Model trained using MSE loss with private dataset for 25 epochs, loss ~0.001.
+**model_180121.h5**: Model trained using MSE loss with private dataset for 25 epochs, loss ~0.001.
 
 ## Notes
 * **The model only works with illustrations which have lines**. It will not perform edge detection, it just extracts lines from the original image. So it can ignore edges between different color fills and shadings (often cause gradient changes).
@@ -47,6 +48,7 @@ The data should be organized into directories. The directory tree is:
 * Prefered sizes of image are HD (1920x1080) and SD (1280x720). Memory cost for HD image may be heavy.
 * The input is preprocessed and the output is postprocessed for better result.
 * CLAHE may cause artifacts around high contrast area.
+* To avoid artifacts in white background, input should be preprocessed with contract stretch operation(input 0-255 to output 0-230). This works in model_180102.h5 and model_180121.h5. And This issue will be fix in next release.
 
 ## Further Work
 * Train on large and various dataset.
