@@ -52,7 +52,7 @@ The data should be organized into directories. The directory tree is:
 
 ## Further Work
 * Train on large and various dataset.
-* Classify lines and output them with classes such as boundray line, shading line.
+* Classify lines and output them with classes such as boundary line, shading line.
 
 ## Examples
 [Weibo](http://photo.weibo.com/1252089801/talbum/detail/photo_id/4191853205742070/album_id/3557730510830920)
