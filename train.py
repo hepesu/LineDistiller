@@ -154,7 +154,7 @@ model = Model(inputs=inputs, outputs=outputs)
 model.summary()
 
 if LOAD_WEIGHTS:
-    model.load_weights('model.h5')
+    model.load_weights('./weight/model.h5')
 
 model.compile(loss='MSE', optimizer='Adam')
 
@@ -171,7 +171,7 @@ datagen = image.ImageDataGenerator(
 )
 
 raw_generator = datagen.flow_from_directory(
-    'data/raw',
+    './data/raw',
     target_size=(IMG_HEIGHT, IMG_WIDTH),
     color_mode='grayscale',
     seed=SEED,
@@ -181,7 +181,7 @@ raw_generator = datagen.flow_from_directory(
 )
 
 cs_generator = datagen.flow_from_directory(
-    'data/contour_s',
+    './data/contour',
     target_size=(IMG_HEIGHT, IMG_WIDTH),
     color_mode='grayscale',
     seed=SEED,
@@ -190,35 +190,13 @@ cs_generator = datagen.flow_from_directory(
     shuffle=True
 )
 
-v_raw_generator = datagen.flow_from_directory(
-    'data/v_raw',
-    target_size=(IMG_HEIGHT, IMG_WIDTH),
-    color_mode='grayscale',
-    seed=SEED,
-    class_mode=None,
-    batch_size=BATCH_SIZE,
-    shuffle=True
-)
-
-v_cs_generator = datagen.flow_from_directory(
-    'data/v_contour_s',
-    target_size=(IMG_HEIGHT, IMG_WIDTH),
-    color_mode='grayscale',
-    seed=SEED,
-    class_mode=None,
-    batch_size=BATCH_SIZE,
-    shuffle=True
-)
-
-checkpointer = ModelCheckpoint(filepath='model.h5', verbose=1)
+checkpointer = ModelCheckpoint(filepath='./weight/model.h5', verbose=1)
 
 history = model.fit_generator(
     zip(raw_generator, cs_generator),
     steps_per_epoch=512 // BATCH_SIZE,
     epochs=EPOCHS,
-    validation_data=zip(v_raw_generator, v_cs_generator),
-    validation_steps=32 // BATCH_SIZE,
     callbacks=[checkpointer]
 )
 
-model.save('model_final.h5')
+model.save('./weight/model_final.h5')
