@@ -1,23 +1,5 @@
-<style>
-  .gallery-container{
-    display:flex;
-  }
-  .image-container{
-    flex:1;
-    margin:0 2px;
-  }
-  .image-container span{
-    display: block;
-    text-align:center;
-  }
-  .image-container img{
-    border: 1px solid #555; 
-    box-sizing: border-box;
-  }
-</style>
-
 # LineDistiller
-**[English]** [[中文]](#linedistiller中文文档)
+**[English]** [[中文]](#总览)
 
 <p align="center">
  <img src="overview.jpg"/>
@@ -28,77 +10,58 @@ Want to start your own illustration related model? All you need is here. LineDis
 ## Overview
 Extraction of high quality lines from 2D illustration is very crucial for further deep learning work and its application such as colorization, sketch simplication and animation. This work was started for solving this basic problem and we received inspiration from [Deep Extraction of Manga Structural Lines](http://exhibition.cintec.cuhk.edu.hk/exhibition/project-item/manga-line-extraction/) [1] and [sketchKeras](https://github.com/lllyasviel/sketchKeras) [2]. Our approach build upon network in [1]. The residual block in [1] was changed to bottleneck residual block for better performance and less model size. We also tried original network in [1] and U-net like encoder-decoder network with highpass input like [2]. Among these models, the first model are better in both model size and result.
 
-<div class="gallery-container">
-<div class="image-container">
-<img src="data/raw/0/1.png"/>
-<span>raw</span>
-</div>
-<div class="image-container">
-<img src="utils/compare1.png"/>
-<span>edge detection</span>
-</div>
-<div class="image-container">
-<img src="data/contour/0/1.png"/>
-<span>lines</span>
-</div>
-</div>
-<div class="gallery-container">
-
-<div class="image-container">
-<img src="data/raw/0/2.png"/>
-<span>raw</span>
-</div>
-<div class="image-container">
-<img src="utils/compare2.png"/>
-<span>edge detection</span>
-</div>
-<div class="image-container">
-<img src="data/contour/0/2.png"/>
-<span>lines</span>
-</div>
-</div>
+<table>
+  <tbody>
+    <tr>
+      <td width="30%" valign="top"><img src="data/raw/0/1.png"/></td>
+      <td width="30%" valign="top"><img src="utils/compare1.png"/></td>
+      <td width="30%" valign="top"><img src="data/contour/0/1.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%" valign="top"><img src="data/raw/0/2.png"/></td>
+      <td width="30%" valign="top"><img src="utils/compare2.png"/></td>
+      <td width="30%" valign="top"><img src="data/contour/0/2.png"/></td>
+    </tr>
+    <tr>
+      <td align="center">raw</td>
+      <td align="center">edge detection</td>
+      <td align="center">lines</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### What can I get?
 
 With this project you can build your dataset and train your model. Here are some data samples(see below) can be obtained by simply extracting lines from **raw** illustration, and applying some heuristic algorithm from the toolset: **lines**, **bounding rect**, **polygon segmentation**, **mask segmentation**, **fill region segmentation**, **colorization decomposition(flat color)**, **region based color palette**, which can be used for almost all related deep learning tasks. 
 
-<div class="gallery-container">
-<div class="image-container">
-<img src="input/sample.png"/>
-<span>raw</span>
-</div>
-<div class="image-container">
-<img src="output/sample.png"/>
-<span>lines</span>
-</div>
-<div class="image-container">
-<img src="utils/result_mask_poly.png"/>
-<span>bounding rect</span>
-</div>
-<div class="image-container">
-<img src="utils/result_mask_grab.png"/>
-<span>mask</span>
-</div>
-</div>
-
-<div class="gallery-container">
-<div class="image-container">
-<img src="utils/result_fill_vis.png"/>
-<span>fill region</span>
-</div>
-<div class="image-container">
-<img src="utils/result_fill_ave.png"/>
-<span>flat color</span>
-</div>
-<div class="image-container">
-<img src="utils/result_shade_color.png"/>
-<span>color palette</span>
-</div>
-<div class="image-container">
-<img src="utils/result_shade_line.png"/>
-<span>shade lines</span>
-</div>
-</div>
+<table>
+  <tbody>
+    <tr>
+      <td width="25%" valign="top"><img src="input/sample.png"/></td>
+      <td width="25%" valign="top"><img src="output/sample.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_mask_poly.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_mask_grab.png"/></td>
+    </tr>
+    <tr>
+      <td align="center">raw</td>
+      <td align="center">lines</td>
+      <td align="center">bounding rect</td>
+      <td align="center">mask</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><img src="utils/result_fill_vis.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_fill_ave.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_shade_color.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_shade_line.png"/></td>
+    </tr>
+    <tr>
+      <td align="center">fill region</td>
+      <td align="center">flat color</td>
+      <td align="center">color palette</td>
+      <td align="center">shade lines</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### How can I use the dataset? 
 
@@ -210,77 +173,58 @@ ___
 ## 总览
 从二维图中提取高质量的线条对于深度学习工作及其在着色、草图简化和动画制作等方面的应用至关重要。我们从[Deep Extraction of Manga Structural Lines](http://exhibition.cintec.cuhk.edu.hk/exhibition/project-item/manga-lineextraction/)[1]和[sketchKeras](https://github.com/lllyasviel/sketchKeras)[2]中获得了灵感。我们的方法建立在[1]网络的基础上。为了获得更好的性能和更小的模型尺寸，将[1]中的残差块改为瓶颈残差块。我们也尝试了[1]和U-net的原始网络，像[2]的高通滤波结果输入的网络。其中，第一种模型在模型规模和结果上都较好。
 
-<div class="gallery-container">
-<div class="image-container">
-<img src="data/raw/0/1.png"/>
-<span>raw</span>
-</div>
-<div class="image-container">
-<img src="utils/compare1.png"/>
-<span>edge detection</span>
-</div>
-<div class="image-container">
-<img src="data/contour/0/1.png"/>
-<span>lines</span>
-</div>
-</div>
-<div class="gallery-container">
-
-<div class="image-container">
-<img src="data/raw/0/2.png"/>
-<span>raw</span>
-</div>
-<div class="image-container">
-<img src="utils/compare2.png"/>
-<span>edge detection</span>
-</div>
-<div class="image-container">
-<img src="data/contour/0/2.png"/>
-<span>lines</span>
-</div>
-</div>
+<table>
+  <tbody>
+    <tr>
+      <td width="30%" valign="top"><img src="data/raw/0/1.png"/></td>
+      <td width="30%" valign="top"><img src="utils/compare1.png"/></td>
+      <td width="30%" valign="top"><img src="data/contour/0/1.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%" valign="top"><img src="data/raw/0/2.png"/></td>
+      <td width="30%" valign="top"><img src="utils/compare2.png"/></td>
+      <td width="30%" valign="top"><img src="data/contour/0/2.png"/></td>
+    </tr>
+    <tr>
+      <td align="center">色彩</td>
+      <td align="center">边缘检测</td>
+      <td align="center">线条</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### 这项目能做什么？
 
 通过这个项目，您可以构建数据集并训练模型。这里有一些数据样本(见下文)可以通过简单地从**色彩**原图提取线条，并应用工具集的一些启发式算法得到：**线条**，**边界框**，**多边形分割**，**遮罩分割**，**填充区域分割**，**上色色分解(色彩平涂)**，**区域调色板**，可用于几乎所有相关的深度学习任务。
 
-<div class="gallery-container">
-<div class="image-container">
-<img src="input/sample.png"/>
-<span>色彩</span>
-</div>
-<div class="image-container">
-<img src="output/sample.png"/>
-<span>线条</span>
-</div>
-<div class="image-container">
-<img src="utils/result_mask_poly.png"/>
-<span>边界框</span>
-</div>
-<div class="image-container">
-<img src="utils/result_mask_grab.png"/>
-<span>遮罩</span>
-</div>
-</div>
-
-<div class="gallery-container">
-<div class="image-container">
-<img src="utils/result_fill_vis.png"/>
-<span>填充区域</span>
-</div>
-<div class="image-container">
-<img src="utils/result_fill_ave.png"/>
-<span>色彩平涂</span>
-</div>
-<div class="image-container">
-<img src="utils/result_shade_color.png"/>
-<span>调色板</span>
-</div>
-<div class="image-container">
-<img src="utils/result_shade_line.png"/>
-<span>光影线</span>
-</div>
-</div>
+<table>
+  <tbody>
+    <tr>
+      <td width="25%" valign="top"><img src="input/sample.png"/></td>
+      <td width="25%" valign="top"><img src="output/sample.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_mask_poly.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_mask_grab.png"/></td>
+    </tr>
+    <tr>
+      <td align="center">色彩</td>
+      <td align="center">线条</td>
+      <td align="center">边界框</td>
+      <td align="center">遮罩</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><img src="utils/result_fill_vis.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_fill_ave.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_shade_color.png"/></td>
+      <td width="25%" valign="top"><img src="utils/result_shade_line.png"/></td>
+    </tr>
+    <tr>
+      <td align="center">填充区域</td>
+      <td align="center">色彩平涂</td>
+      <td align="center">调色板</td>
+      <td align="center">光影线</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### 数据集能做什么？
 
@@ -360,7 +304,7 @@ python train.py
 ## 注意
 * **模型只对有线条的图画有效**。
 * 展示图片来自网络，版权归其所有者。
-* 受限于数据，复杂的线状元素背景会导致很差的结果。
+* 受限于数据，复杂的线状元素背景会导致很差的结果（真）。
 
 ## 引用
 如果本项目对你的研究有帮助，请慷慨地引用：
@@ -378,4 +322,4 @@ python train.py
 
 From **Project HAT** by Hepesu With :heart:
 ___
-**Project HAT** 提供有关影视及动画制作相关的咨询及开发服务，详情请联系hatsuame[AT]gmail.com
+**Project HAT** 提供有关影视及动画制作相关的咨询及开发服务，详情请联系hatsuame[AT]gmail.com 。
